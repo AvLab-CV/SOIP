@@ -13,7 +13,7 @@ In this demo, you will be the reference face. Therefore, you can control the sou
 
 1. Because the size of our pretrained model is too big to be stored to GitHub, please download the model from
 
-https://drive.google.com/file/d/1S-dDljxz-_F39shlZ5D99aKB24DGa2nN/view?usp=sharing
+https://drive.google.com/file/d/1H8RqQ4GAYSVFt9q3CgIyS1CrOKQRXi7U/view?usp=sharing
 
 2. Unzip it and place it in the main directory ``./``.
 
