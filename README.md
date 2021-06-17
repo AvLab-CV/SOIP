@@ -26,6 +26,6 @@ https://drive.google.com/file/d/1H8RqQ4GAYSVFt9q3CgIyS1CrOKQRXi7U/view?usp=shari
 5. For better performance, we strongly recommend using the same version as ours.
 
 ## For ICCV Rebuttal
-
+![image](https://github.com/xxxabcc/SOIP/blob/main/ACE.png)
 
 
