@@ -27,5 +27,5 @@ https://drive.google.com/file/d/1H8RqQ4GAYSVFt9q3CgIyS1CrOKQRXi7U/view?usp=shari
 
 ## For ICCV Rebuttal
 ![image](https://github.com/xxxabcc/SOIP/blob/main/ACE.png)
-
+![image](https://github.com/xxxabcc/SOIP/blob/main/ID.png)
 
