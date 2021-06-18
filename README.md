@@ -4,7 +4,7 @@ For Reviewer 1:
 2. Thanks for the acknowledgement of the novelty of the
 IDSC. We also wished to show qualitative samples for different ACEs in Table 1. However, because of page limit, we
 removed them in the submitted version. For your requests, we show the samples in our GitHub Fig.1
-3. Regarding the doubt about possible identity leak in Fig.7, we computed the CSIM between the source and the      generated (tar-gen), and between the reference and the generated (ref-gen). Since there are 3 source images and 4 reference images in Fig.7, we show the CSIM comparison in a 3x4 matrix with each element showing tar-gen\ref-gen added to Fig.7 and show in the Github Fig.2.
+3. Regarding the doubt about possible identity leak in Fig.7, we computed the CSIM between the source and the      generated (tar-gen), and between the reference and the generated (ref-gen). Since there are 3 source images and 4 reference images in Fig.7, we show the CSIM comparison in a 3x4 matrix with each element showing tar-gen\ref-gen added to Fig.7 and show in the Github Fig.2. Since there are 3 source images and 4 reference images inFig.7, we show the CSIM comparison in a 3x4 ma-trix with each element showing tar-gen\ref-gen. The 3x4matrix can be written as the following 3 rows: [0.71\0.340.81\0.30 0.70\0.21, 0.66\0.39], [0.75\0.24, 0.85\0.25,0.82\0.30, 0.70\0.34], [0.76\0.33, 0.80\0.24, 0.78\0.30,0.74\0.33]. This matrix shows, for example, the reenactedface with the first source and the 3rd reference has 0.70and 0.21 similarities, respectively. The above comparisonshows the capacity of our approach for the source ID preser-vation and the prevention against the reference’s identity leak.
 4. Fig.4 shows the reenacted faces for references in
 frontal and 45 degrees to both sides. The samples for reenacting the reference faces of large/extreme poses are given
 in Fig.8 and Fig.9. More samples for large pose with and without the IDSC are offered in the GitHub Fig.3.
@@ -34,7 +34,6 @@ For Reviewer 3:
 
 ![image](https://github.com/xxxabcc/SOIP/blob/main/ACE.png)
 ![image](https://github.com/xxxabcc/SOIP/blob/main/ID.png)
-Since there are 3 source images and 4 reference images inFig.7,  we show  the  CSIM  comparison  in  a  3x4  ma-trix with each element showing tar-gen\ref-gen.  The 3x4matrix can be written as the following 3 rows:  [0.71\0.340.81\0.30 0.70\0.21,  0.66\0.39],  [0.75\0.24,  0.85\0.25,0.82\0.30, 0.70\0.34], [0.76\0.33, 0.80\0.24, 0.78\0.30,0.74\0.33].  This matrix shows, for example, the reenactedface  with  the  first  source  and  the  3rd  reference  has  0.70and 0.21 similarities, respectively.  The above comparisonshows the capacity of our approach for the source ID preser-vation  and  the  prevention  against  the  reference’s  identity leak.
 ![image](https://github.com/xxxabcc/SOIP/blob/main/IDSC.png)
 ![image](https://github.com/xxxabcc/SOIP/blob/main/Table.PNG)
 
