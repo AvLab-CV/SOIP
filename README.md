@@ -1,4 +1,32 @@
 ## For ICCV Rebuttal
+For Reviewer 1:
+1. When clicking on the previous link to
+access our code, you need to wait a second for our permission. We changed it to permission-free for your test and
+provide it on the paper’s GitHub. Sorry for the inconvenience caused by the previous one.
+2. Thanks for the acknowledgement of the novelty of the
+IDSC. We also wished to show qualitative samples for different ACEs in Table 1. However, because of page limit, we
+removed them in the submitted version. For your requests, we show the samples in our GitHub Fig.1
+3. Regarding the doubt about possible identity leak in Fig.7, we computed the CSIM between the source and the      generated (tar-gen), and between the reference and the generated (ref-gen). Since there are 3 source images and 4 reference images in Fig.7, we show the CSIM comparison in a 3x4 matrix with each element showing tar-gen\ref-gen added to Fig.7 and show in the Github Fig.2.
+4. Fig.4 shows the reenacted faces for references in
+frontal and 45 degrees to both sides. The samples for reenacting the reference faces of large/extreme poses are given
+in Fig.8 and Fig.9. More samples for large pose with and without the IDSC are offered in the GitHub Fig.3.
+5. The 4 contributions summarized in L121 138 are 1) IDSC for generating ID-preserving landmarks, 2) RFG for generating the target face with desired ID, pose and expression, 3) Large-pose reenactment tackled by 3D landmarkbased approach, and 4) Competitive performance shown on common benchmarks. Our results are not just good in quality, but also better than many SOTA methods, as shown in Tables 3, 4, especially the low FID and high CSIM in all benchmarks. We would also like to emphasize that although the RFG is built upon the StarGANv2, which is a strong GAN for style transfer, we modify the input, output, loss functions and implement dual discriminators for achieving the desired reenactment performance, as shown in Table 2.
+6. The differences of the RFG from the StarGANv2 are presented in Sec.3.2 and more in the supplementary document, and can be summarized as follows: 1) The input to the generator $G_{fg}$ is a binary facial shape (shown in Fig.3) instead of a RGB color image; 2) The style feature code $s_s$ is injected to all 4 intermediate residual blocks and all 4 upsampling residual blocks (shown in Table 2 of the supplementary page), instead of 2 intermediate residual blocks in StarGANv2, based on a comparison study; 3) Three loss functions in Eqns (10$\sim$12): the L1 attribute loss, the cosine identity loss and the L1 style consistency loss; 4) The dual-scaled discriminators in L454$\sim$458. Because we consider the combination of expression and pose as a unified style, different from the multi-domain styles in StarGANv2, we rename the original style encoder as the style expert for the specific unified style.
+
+For Reviewer 2:
+1. Thanks for the positive feedback. The minimum requirement is two images per identity so that we can do self-reenactment with one image as the source and the other one as reference in the beginning, and then progress to cross-id reenactment. More images will definitely help as the cross-pose and cross-expression transformation can be better learned. Because we need to compare with the SOTA methods, we follow the protocols in the previous work. For RaFD, (L523) we follow the settings of FReeNet [25]. For VoxCeleb1, we follow FSTH [24], as stated in L536. For VoxCeleb2, we also follow FSTH [24], as in L566. Since our work emphasizes on large pose, we are probably the first using MPIE for reenactment and define our own protocol presented in L567~578. Note that the reference faces can be out of the dataset used in training, and please try our testing code using your face as a reference. But the source face must meet the aforementioned minimum requirement of 2 images per ID.
+2. Actually, our benchmark datasets are two kinds. One is with the ground truth (GT) provided, and they are the RaFD and MPIE, which were made in the controlled conditions. The other is without GT, and they are VoxCeleb1 and VoxCeleb2, which were collected in the wild. Therefore, depending on the dataset used, our experiments already present the results for cases with and without GT. For self-reenactment in the in-the-wild dataset, we used different frames of the same subjects as the references (and therefore, as the GT) so that we can compare with other SOTA methods, presented in Table 3 and Fig.5. For the most challenging cross-reenactment, we experimented on one in-the-wild dataset, the VoxCeleb2, and two controlled datasets, RaFD and MPIE, and show comparisons in Table 4, Figs.6, 7 and 8, with comments in L745$\sim$795. 
+3. As for the RaFD, there is a typo in L525, the training set actually contains all 5 poses, instead of 3. Although such settings may sound problematic, it aims to evaluate the errors from the ground-truth, which can be considered as the best possible performance of an approach. This is also why we conducted the ablation study on RaFD to determine the best settings of our approach in Sec.4.2, and then followed other practical settings for the comparison study in Sec.4.3. 
+4. Fine-tune is conducted for a scenario that the model has been trained on the training set and how we use the trained model to reenact the faces/subjects in the testing set. The subjects in both sets do not overlap. We follow this scenario as that in FSTH [24]. During fine-tune phase, only the generator $G_{fg}$ and the dual discriminators $D_{g1}$ and $D_{g2}$ are updated (or retrained). {\color{orange}Please click on the link on the top left of this page for the rest of our responses.}
+
+
+
+
+
+
+
+
+
 ![image](https://github.com/xxxabcc/SOIP/blob/main/ACE.png)
 ![image](https://github.com/xxxabcc/SOIP/blob/main/ID.png)
 Since there are 3 source images and 4 reference images inFig.7,  we show  the  CSIM  comparison  in  a  3x4  ma-trix with each element showing tar-gen\ref-gen.  The 3x4matrix can be written as the following 3 rows:  [0.71\0.340.81\0.30 0.70\0.21,  0.66\0.39],  [0.75\0.24,  0.85\0.25,0.82\0.30, 0.70\0.34], [0.76\0.33, 0.80\0.24, 0.78\0.30,0.74\0.33].  This matrix shows, for example, the reenactedface  with  the  first  source  and  the  3rd  reference  has  0.70and 0.21 similarities, respectively.  The above comparisonshows the capacity of our approach for the source ID preser-vation  and  the  prevention  against  the  reference’s  identity leak.
