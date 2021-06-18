@@ -1,13 +1,20 @@
 ## For ICCV Rebuttal
+
 For Reviewer 1:
 1. When clicking on the previous link to access our code, you need to wait a second for our permission. We changed it to permission-free for your test and provide it on the paper’s GitHub. Sorry for the inconvenience caused by the previous one.
-2. Thanks for the acknowledgement of the novelty of the
-IDSC. We also wished to show qualitative samples for different ACEs in Table 1. However, because of page limit, we
-removed them in the submitted version. For your requests, we show the samples in our GitHub Fig.1
-3. Regarding the doubt about possible identity leak in Fig.7, we computed the CSIM between the source and the      generated (tar-gen), and between the reference and the generated (ref-gen). Since there are 3 source images and 4 reference images in Fig.7, we show the CSIM comparison in a 3x4 matrix with each element showing tar-gen\ref-gen added to Fig.7 and show in the Github Fig.2. Since there are 3 source images and 4 reference images inFig.7, we show the CSIM comparison in a 3x4 ma-trix with each element showing tar-gen\ref-gen. The 3x4matrix can be written as the following 3 rows: [0.71\0.340.81\0.30 0.70\0.21, 0.66\0.39], [0.75\0.24, 0.85\0.25,0.82\0.30, 0.70\0.34], [0.76\0.33, 0.80\0.24, 0.78\0.30,0.74\0.33]. This matrix shows, for example, the reenactedface with the first source and the 3rd reference has 0.70and 0.21 similarities, respectively. The above comparisonshows the capacity of our approach for the source ID preser-vation and the prevention against the reference’s identity leak.
-4. Fig.4 shows the reenacted faces for references in
-frontal and 45 degrees to both sides. The samples for reenacting the reference faces of large/extreme poses are given
+2. Thanks for the acknowledgement of the novelty of the IDSC. We also wished to show qualitative samples for different ACEs in Table 1. However, because of page limit, we removed them in the submitted version. For your requests, we show the samples in our GitHub Fig.1.
+
+![image](https://github.com/xxxabcc/SOIP/blob/main/ACE.png)
+
+3. Regarding the doubt about possible identity leak in Fig.7, we computed the CSIM between the source and the generated (tar-gen), and between the reference and the generated (ref-gen). Since there are 3 source images and 4 reference images in Fig.7, we show the CSIM comparison in a 3x4 matrix with each element showing tar-gen\ref-gen added to Fig.7 and show in the Github Fig.2. Since there are 3 source images and 4 reference images inFig.7, we show the CSIM comparison in a 3x4 ma-trix with each element showing tar-gen\ref-gen. The 3x4matrix can be written as the following 3 rows: [0.71\0.340.81\0.30 0.70\0.21, 0.66\0.39], [0.75\0.24, 0.85\0.25,0.82\0.30, 0.70\0.34], [0.76\0.33, 0.80\0.24, 0.78\0.30,0.74\0.33]. This matrix shows, for example, the reenactedface with the first source and the 3rd reference has 0.70and 0.21 similarities, respectively. The above comparisonshows the capacity of our approach for the source ID preser-vation and the prevention against the reference’s identity leak.
+
+![image](https://github.com/xxxabcc/SOIP/blob/main/ID.png)
+
+4. Fig.4 shows the reenacted faces for references in frontal and 45 degrees to both sides. The samples for reenacting the reference faces of large/extreme poses are given
 in Fig.8 and Fig.9. More samples for large pose with and without the IDSC are offered in the GitHub Fig.3.
+
+![image](https://github.com/xxxabcc/SOIP/blob/main/IDSC.png)
+
 5. The 4 contributions summarized in L121 138 are 1) IDSC for generating ID-preserving landmarks, 2) RFG for generating the target face with desired ID, pose and expression, 3) Large-pose reenactment tackled by 3D landmarkbased approach, and 4) Competitive performance shown on common benchmarks. Our results are not just good in quality, but also better than many SOTA methods, as shown in Tables 3, 4, especially the low FID and high CSIM in all benchmarks. We would also like to emphasize that although the RFG is built upon the StarGANv2, which is a strong GAN for style transfer, we modify the input, output, loss functions and implement dual discriminators for achieving the desired reenactment performance, as shown in Table 2.
 6. The differences of the RFG from the StarGANv2 are presented in Sec.3.2 and more in the supplementary document, and can be summarized as follows: 1) The input to the generator $G_{fg}$ is a binary facial shape (shown in Fig.3) instead of a RGB color image; 2) The style feature code $s_s$ is injected to all 4 intermediate residual blocks and all 4 upsampling residual blocks (shown in Table 2 of the supplementary page), instead of 2 intermediate residual blocks in StarGANv2, based on a comparison study; 3) Three loss functions in Eqns (10$\sim$12): the L1 attribute loss, the cosine identity loss and the L1 style consistency loss; 4) The dual-scaled discriminators in L454$\sim$458. Because we consider the combination of expression and pose as a unified style, different from the multi-domain styles in StarGANv2, we rename the original style encoder as the style expert for the specific unified style.
 
@@ -27,16 +34,14 @@ For Reviewer 2:
 For Reviewer 3:
 1. Our model is the first specifically designed for large-pose face reenactment, which has not been considered by other approaches. This fact limits our comparison. We tested the code provided by X2Face [21], but the performance is far behind that reported in their paper. We also tested the code offered by FSTH, and the performance is also far behind. The performance in Table 3 and sample images in Figure 5 are directly duplicated from their papers.
 2. We will add in a figure, as shown in GitHub Fig.4, that shows the visible and invisible landmarks changing across large pose variation, and the associated reenacted faces. The MarioNET [5] uses the 3D landmarks in the preprocessing phase to generate the source and reference inputs in the form of landmark images. A big difference between MarioNET and our SOIP network is that the former is built upon encoders and decoders with attention blocks, but the latter is built on GAN architectures with multiple discriminators. The IDSC, a major module in the SOIP, transforms the reference’s 3D landmarks to the target landmark estimate, and deals with the landmark variation across large poses. 
+
+![image](https://github.com/xxxabcc/SOIP/blob/main/lm.png)
+
 3. Yes, the comparison with FOM [18] in Table 4 was obtained by using the pretrained model released by the authors which was trained on the VoxCeleb1. We managed to train the FOM on the VoxCeleb2, RaFD and MPIE, and updated Table 4 as shown in GitHub Fig.5.
-4. Thanks, the section and citation numbers will all be corrected.
 
-
-
-![image](https://github.com/xxxabcc/SOIP/blob/main/ACE.png)
-![image](https://github.com/xxxabcc/SOIP/blob/main/ID.png)
-![image](https://github.com/xxxabcc/SOIP/blob/main/IDSC.png)
 ![image](https://github.com/xxxabcc/SOIP/blob/main/Table.PNG)
 
+4. Thanks, the section and citation numbers will all be corrected.
 
 ## Shape-Oriented Identity-Preserving Face Reenactment (SOIP)
 ![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg?style=plastic)
