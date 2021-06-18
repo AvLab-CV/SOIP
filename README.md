@@ -36,7 +36,7 @@ For Reviewer 3:
 
       ![image](https://github.com/xxxabcc/SOIP/blob/main/lm.png)
 
-3. Yes, the comparison with FOM [18] in Table 4 was obtained by using the pretrained model released by the authors which was trained on the VoxCeleb1. We managed to train the FOM on the VoxCeleb2, RaFD and MPIE, and updated Table 4 as shown in GitHub Fig.5.
+3. Yes, the comparison with FOM [18] in Table 4 was obtained by using the pretrained model released by the authors which was trained on the VoxCeleb1. We managed to train the FOM on the VoxCeleb2, RaFD and MPIE, and shown in GitHub Table 1, to replace Table 4 in the paper.
 
       ![image](https://github.com/xxxabcc/SOIP/blob/main/Table.PNG)
 
