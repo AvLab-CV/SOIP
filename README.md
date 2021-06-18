@@ -28,4 +28,5 @@ https://drive.google.com/file/d/1H8RqQ4GAYSVFt9q3CgIyS1CrOKQRXi7U/view?usp=shari
 ## For ICCV Rebuttal
 ![image](https://github.com/xxxabcc/SOIP/blob/main/ACE.png)
 ![image](https://github.com/xxxabcc/SOIP/blob/main/ID.png)
+Since there are 3 source images and 4 reference images inFig.7,  we show  the  CSIM  comparison  in  a  3x4  ma-trix with each element showing tar-gen\ref-gen.  The 3x4matrix can be written as the following 3 rows:  [0.71\0.340.81\0.30 0.70\0.21,  0.66\0.39],  [0.75\0.24,  0.85\0.25,0.82\0.30, 0.70\0.34], [0.76\0.33, 0.80\0.24, 0.78\0.30,0.74\0.33].  This matrix shows, for example, the reenactedface  with  the  first  source  and  the  3rd  reference  has  0.70and 0.21 similarities, respectively.  The above comparisonshows the capacity of our approach for the source ID preser-vation  and  the  prevention  against  the  reference’s  identityleak
 ![image](https://github.com/xxxabcc/SOIP/blob/main/Table.PNG)
