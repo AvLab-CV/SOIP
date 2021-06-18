@@ -12,7 +12,7 @@ For Reviewer 1:
 
 4. Fig.4 shows the reenacted faces for references in frontal and 45 degrees to both sides. More samples for large pose with and without the IDSC are offered in this GitHub Fig.3 below. This figure will be integrated with Fig.4 in the paper.
 
-![image](https://github.com/xxxabcc/SOIP/blob/main/IDSC.png)
+      ![image](https://github.com/xxxabcc/SOIP/blob/main/IDSC.png)
 
 5. The 4 contributions summarized in L121 138 are 1) IDSC for generating ID-preserving landmarks, 2) RFG for generating the target face with desired ID, pose and expression, 3) Large-pose reenactment tackled by 3D landmarkbased approach, and 4) Competitive performance shown on common benchmarks. Our results are not just good in quality, but also better than many SOTA methods, as shown in Tables 3, 4, especially the low FID and high CSIM in all benchmarks. We would also like to emphasize that although the RFG is built upon the StarGANv2, which is a strong GAN for style transfer, we modify the input, output, loss functions and implement dual discriminators for achieving the desired reenactment performance, as shown in Table 2.
 6. The differences of the RFG from the StarGANv2 are presented in Sec.3.2 and more in the supplementary document, and can be summarized as follows: 1) The input to the generator $G_{fg}$ is a binary facial shape (shown in Fig.3) instead of a RGB color image; 2) The style feature code $s_s$ is injected to all 4 intermediate residual blocks and all 4 upsampling residual blocks (shown in Table 2 of the supplementary page), instead of 2 intermediate residual blocks in StarGANv2, based on a comparison study; 3) Three loss functions in Eqns (10-12): the L1 attribute loss, the cosine identity loss and the L1 style consistency loss; 4) The dual-scaled discriminators in L454~458. Because we consider the combination of expression and pose as a unified style, different from the multi-domain styles in StarGANv2, we rename the original style encoder as the style expert for the specific unified style.
@@ -34,11 +34,11 @@ For Reviewer 3:
 1. Our model is the first specifically designed for large-pose face reenactment, which has not been considered by other approaches. This fact limits our comparison. We tested the code provided by X2Face [21], but the performance is far behind that reported in their paper. We also tested the code offered by FSTH, and the performance is also far behind. The performance in Table 3 and sample images in Figure 5 are directly duplicated from their papers.
 2. We will add in a figure, as shown in GitHub Fig.4, that shows the visible and invisible landmarks changing across large pose variation, and the associated reenacted faces. The MarioNET [5] uses the 3D landmarks in the preprocessing phase to generate the source and reference inputs in the form of landmark images. A big difference between MarioNET and our SOIP network is that the former is built upon encoders and decoders with attention blocks, but the latter is built on GAN architectures with multiple discriminators. The IDSC, a major module in the SOIP, transforms the reference’s 3D landmarks to the target landmark estimate, and deals with the landmark variation across large poses. 
 
-![image](https://github.com/xxxabcc/SOIP/blob/main/lm.png)
+      ![image](https://github.com/xxxabcc/SOIP/blob/main/lm.png)
 
 3. Yes, the comparison with FOM [18] in Table 4 was obtained by using the pretrained model released by the authors which was trained on the VoxCeleb1. We managed to train the FOM on the VoxCeleb2, RaFD and MPIE, and updated Table 4 as shown in GitHub Fig.5.
 
-![image](https://github.com/xxxabcc/SOIP/blob/main/Table.PNG)
+      ![image](https://github.com/xxxabcc/SOIP/blob/main/Table.PNG)
 
 4. Thanks, the section and citation numbers will all be corrected.
 
