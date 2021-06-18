@@ -1,8 +1,6 @@
 ## For ICCV Rebuttal
 For Reviewer 1:
-1. When clicking on the previous link to
-access our code, you need to wait a second for our permission. We changed it to permission-free for your test and
-provide it on the paper’s GitHub. Sorry for the inconvenience caused by the previous one.
+1. When clicking on the previous link to access our code, you need to wait a second for our permission. We changed it to permission-free for your test and provide it on the paper’s GitHub. Sorry for the inconvenience caused by the previous one.
 2. Thanks for the acknowledgement of the novelty of the
 IDSC. We also wished to show qualitative samples for different ACEs in Table 1. However, because of page limit, we
 removed them in the submitted version. For your requests, we show the samples in our GitHub Fig.1
