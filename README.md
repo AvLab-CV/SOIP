@@ -31,7 +31,7 @@ For Reviewer 2:
 11. Please see our GitHub for video demo, and test our demo code using a face as a reference.
 
 For Reviewer 3:
-1. Our model is the first specifically designed for large-pose face reenactment, which has not been considered by other approaches. This fact limits our comparison. We tested the code provided by X2Face [21], but the performance is far behind that reported in their paper. We also tested the code offered by FSTH, and the performance is also far behind. The performance in Table 3 and sample images in Figure 5 are directly duplicated from their papers.
+1. Our model is the first specifically designed for large-pose face reenactment, which has not been considered by other approaches. This fact limits our comparison. We tested the code provided by X2Face [21], but the performance is far behind that reported in their paper. We also tested the code offered by FSTH, and the performance is also far behind. The performance in Table 3 is directly duplicated from their papers.
 2. We will add in a figure, as shown in GitHub Fig.4, that shows the visible and invisible landmarks changing across large pose variation, and the associated reenacted faces. The MarioNET [5] uses the 3D landmarks in the preprocessing phase to generate the source and reference inputs in the form of landmark images. A big difference between MarioNET and our SOIP network is that the former is built upon encoders and decoders with attention blocks, but the latter is built on GAN architectures with multiple discriminators. The IDSC, a major module in the SOIP, transforms the reference’s 3D landmarks to the target landmark estimate, and deals with the landmark variation across large poses. 
 
       ![image](https://github.com/xxxabcc/SOIP/blob/main/lm.png)
