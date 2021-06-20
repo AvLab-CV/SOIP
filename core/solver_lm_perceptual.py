@@ -45,12 +45,9 @@ class Solver(nn.Module):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         self.nets, self.nets_ema = build_model(args)
-        # self.arcface, self.conf = load_arcface()
-        # self.arcface = load_arcface_2()
+
         self.writer = SummaryWriter('log/train_list_celebv_finetune_id_cyc')
-        # print(self.arcface)
-        # assert False
-        # below setattrs are to make networks be children of Solver, e.g., for self.to(self.device)
+
         for name, module in self.nets.items():
             utils.print_network(module, name)
             setattr(self, name, module)
@@ -68,10 +65,6 @@ class Solver(nn.Module):
                     betas=[args.beta1, args.beta2],
                     weight_decay=args.weight_decay)
 
-            # self.ckptios = [
-            #     CheckpointIO(ospj(args.checkpoint_dir, '{:06d}_nets.ckpt'), **self.nets),
-            #     CheckpointIO(ospj(args.checkpoint_dir, '{:06d}_nets_ema.ckpt'), **self.nets_ema),
-            #     CheckpointIO(ospj(args.checkpoint_dir, '{:06d}_optims.ckpt'), **self.optims)]
             self.ckptios = [
                 CheckpointIO(ospj(args.checkpoint_dir, '{}_nets.ckpt'), **self.nets),
                 CheckpointIO(ospj(args.checkpoint_dir, '{}_nets_ema.ckpt'), **self.nets_ema),
@@ -79,7 +72,6 @@ class Solver(nn.Module):
         else:
 
             self.ckptios = [CheckpointIO(ospj(args.checkpoint_dir, '{}_nets_ema.ckpt'.format(args.resume_iter)), **self.nets_ema)]
-            # self.ckptios = [CheckpointIO(ospj(args.checkpoint_dir, '{:06d}_nets_ema.ckpt'), **self.nets_ema)]
 
         self.to(self.device)
         for name, network in self.named_children():
@@ -118,7 +110,7 @@ class Solver(nn.Module):
         elif self.args.loss == 'lightcnn':
             BACKBONE_RESUME_ROOT = 'D:/face-reenactment/stargan-v2-master/FR_Pretrained_Test/Pretrained/LightCNN/LightCNN_29Layers_V2_checkpoint.pth.tar'
 
-            # INPUT_SIZE = [128, 128]
+
             Model = LightCNN_29Layers_v2()
 
             if os.path.isfile(BACKBONE_RESUME_ROOT):
@@ -130,7 +122,7 @@ class Solver(nn.Module):
 
             DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
             criterion_id = Model.to(DEVICE)
-            # criterion_id = FR_Pretrained_Test.LossEG(False, 0)
+
         if self.args.id_embed:
             id_embedder = network.vgg_feature(False, 0)
         else:
@@ -204,12 +196,9 @@ class Solver(nn.Module):
             else:
                 x1_source, x1_source_lm = inputs.x1, inputs.x_lm
                 x2_target, x2_target_lm = inputs.x2, inputs.x2_lm
-                # label = inputs.label
 
-
-                # masks = nets.fan.get_heatmap(x_real) if args.w_hpf > 0 else None
                 if args.masks:
-                    # masks = nets.fan.get_heatmap(x2_target_lm)
+
                     masks = x2_target_lm
                 else:
                     masks = None
@@ -312,36 +301,7 @@ class Solver(nn.Module):
         # utils.translate_and_reconstruct_sample(nets_ema, args, src.x1, src.x1_c, src.x2, src.x2_lm, fname, conf, arcface)
         utils.translate_and_reconstruct(nets_ema, args, src.x1, src.x2, src.x2_lm, fname, id_embedder)
 
-        # utils.translate_and_reconstruct_sample(nets_ema, args, src.x1, src.x1_c, src.x2, src.x2_lm, fname, conf,
-        #                                        arcface)
-
-        # fname = ospj(args.result_dir, 'video_rec.mp4')
-        # print('Working on {}...'.format(fname))
-        # utils.video_rec(nets_ema, args, src.x1, src.x2, src.x2_lm, fname)
-
-
-
-
-        # fname = ospj(args.result_dir, 'reference.jpg')
-        # print('Working on {}...'.format(fname))
-        # utils.translate_using_reference(nets_ema, args, src.x, ref.x, ref.y, fname)
-        #
-        # fname = ospj(args.result_dir, 'video_ref.mp4')
-        # print('Working on {}...'.format(fname))
-        # utils.video_ref(nets_ema, args, src.x, ref.x, ref.y, fname)
-        #
-        # N = src.x.size(0)
-        #
-        # y_trg_list = [torch.tensor(y).repeat(N).to(device)
-        #               for y in range(min(args.num_domains, 5))]
-        # z_trg_list = torch.randn(args.num_outs_per_domain, 1, args.latent_dim).repeat(1, N, 1).to(device)
-        # for psi in [0.5, 0.7, 1.0]:
-        #     filename = ospj(args.sample_dir, '%06d_latent_psi_%.1f.jpg' % (step, psi))
-        #     translate_using_latent(nets, args, src.x, y_trg_list, z_trg_list, psi, fname)
-        #
-        # fname = ospj(args.result_dir, 'latent.jpg')
-        # print('Working on {}...'.format(fname))
-        # utils.video_ref(nets_ema, args, src.x, ref.x, ref.y, fname)
+        
 
     @torch.no_grad()
     def evaluate(self):
@@ -355,23 +315,17 @@ class Solver(nn.Module):
 
 def compute_d_loss(nets, args, x1_source, x1_source_lm, x2_target, x2_target_lm, masks=None, loss_select = 'perceptual', embedder = None):
     if args.pix2pix:
-        # with real images
-        # x2_target_down = F.interpolate(x2_target, size=args.img_size//2, mode='bilinear')
-        # x2_target_lm_down = F.interpolate(x2_target_lm, size=args.img_size // 2, mode='bilinear')
+
 
         x2_target.requires_grad_()
-        # x2_target_down.requires_grad_()
-        # x2_target_lm_down.requires_grad_()
 
-        # out_1 = nets.discriminator(x2_target, x2_target_lm)
-        # out_2 = nets.discriminator2(x2_target, x2_target_lm)
 
         _, real_out_1 = nets.discriminator(x2_target, x2_target_lm)
         _, real_out_2 = nets.discriminator2(x2_target, x2_target_lm)
 
         real_out = real_out_1 + real_out_2
         loss_real = adv_loss(real_out, 1)
-        # loss_reg = r1_reg(out, x2_target)
+
 
         # with fake images
         with torch.no_grad():
@@ -459,12 +413,7 @@ def compute_g_loss(nets, args, x1_source, x1_source_lm, x2_target, x2_target_lm,
         out = nets.discriminator(x_fake, x2_target_lm)
         loss_adv = adv_loss(out, 1)
 
-    # content reconstruction loss
-    # s_pred = nets.style_encoder(x_fake)
-    # loss_con = torch.mean(torch.abs(s_pred - s_trg))
 
-    # cycle-consistency loss
-    # x_fake_2 = nets.generator(x1_source_lm, s_pred, masks=masks)
     if args.l2:
         loss_pixel_1 = torch.mean(F.mse_loss(x_fake, x2_target))
     else:
@@ -534,12 +483,6 @@ def compute_g_loss(nets, args, x1_source, x1_source_lm, x2_target, x2_target_lm,
 
 
 
-            # source_embs = criterion_id(x1_source[0:1])
-            # target_embs = criterion_id(x2_target)
-            # fake_embs = criterion_id(x_fake)
-        # print(source_embs.size())
-        # print(target_embs.size())
-        # print(fake_embs.size())
         cos = nn.CosineSimilarity(dim=1, eps=1e-6)
         # arr3 =
         # print(source_embs[0])
@@ -648,15 +591,9 @@ def compute_d_loss_multi(nets, args, x1_1_source, x1_2_source, x1_3_source, x1_4
         s_trg += nets.style_encoder(x1_6_source)
         s_trg += nets.style_encoder(x1_7_source)
         s_trg += nets.style_encoder(x1_8_source)
-        # print(s_trg )
-        # print(s_trg/4)
-        # print(s_trg.size())
-        # assert False
-        # print(s_trg)
+
         s_trg_mean = s_trg/8
-        # print(s_trg_mean)
-        # print(s_trg_mean.size())
-        # assert False
+
 
 
         x_fake = nets.generator(x9_target_lm, s_trg_mean, masks=masks, loss_select=loss_select)
@@ -690,17 +627,7 @@ def compute_g_loss_multi(nets, args, x1_1_source, x1_2_source, x1_3_source, x1_4
     out = nets.discriminator(x_fake, x9_target_lm)
     loss_adv = adv_loss(out, 1)
 
-    # content reconstruction loss
-    # s_pred = nets.style_encoder(x_fake)
-    # loss_con = torch.mean(torch.abs(s_pred - s_trg))
-
-    # cycle-consistency loss
-    # x_fake_2 = nets.generator(x1_source_lm, s_pred, masks=masks)
     loss_pixel_1 = torch.mean(torch.abs(x_fake - x9_target))
-    # loss_cyc_1 = torch.mean(F.mse_loss(x_fake, x2_target))
-    # loss_cyc_2 = torch.mean(torch.abs(x_fake_2 - x1_source))
-
-    # loss_cyc = loss_cyc_1 + loss_cyc_2
 
     # loss_cyc = torch.mean(torch.abs(x_fake - x2_target))
     if args.loss == 'arcface':
@@ -793,32 +720,7 @@ def r1_reg(d_out, x_in):
     reg = 0.5 * grad_dout2.view(batch_size, -1).sum(1).mean(0)
     return reg
 
-# import os
-# print(os.getcwd())
 
-# from arcface.config import get_config
-#
-#
-# from arcface.Learner import face_learner
-#
-# def load_arcface():
-#     conf = get_config(False)
-#
-#     # mtcnn = MTCNN()
-#     # print('mtcnn loaded')
-#
-#     learner = face_learner(conf, True)
-#
-#     if torch.cuda.is_available():
-#         learner.load_state(conf, 'mobilefacenet.pth', False, True)
-#     else:
-#         learner.load_state(conf, 'cpu_final.pth', True, True)
-#     learner.model.eval()
-#     # _, faces1 = mtcnn.align_multi(im1, conf.face_limit, conf.min_face_size)
-#     # _, faces2 = mtcnn.align_multi(im2, conf.face_limit, conf.min_face_size)
-#     # learner.extract_fea(conf, faces1[0], faces1[0], False)
-#
-#     return learner, conf
 
 def load_arcface_2():
 
